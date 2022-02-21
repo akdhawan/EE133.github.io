@@ -6,144 +6,127 @@
 
 ## **Abstract**
 ---
-A Vector Network Analyzer is used to investigate and characterize the parasitic properties of passive components such as resistors, capacitors, and inductors. We compare spice simulations of these components to the actual measurements we see in lab.
+A Vector Network Analyzer is used to investigate and characterize the parasitic properties of passive components such as resistors, capacitors, and inductors. We compare spice simulations of these components to the actual measurements we see in lab so we better model these real life components with lumped circuit models.
 
 
 ## **Introduction**
 ---
-In the study of passive components such as resistors, capacitors, and inductors, we are intially taught of their ideal behaviors. This allows us to get better intuition for circuits as a whole and understand basic circuits without the need for maxwells equations. However, when using these passive components in a real live setting, all of these components have *parasitic* properties when if not considered, can affect the performance of a circuit. 
+In the study of passive components such as resistors, capacitors, and inductors, we are intially taught of their ideal behaviors. This allows us to get better intuition for circuits as a whole and understand basic circuits without the need for maxwells equations. When using these components in physical circuit however, they have *parasitic* properties. It is important to characterize these properties so we can account for them in our models.
 
-To represent these *parasitic* properties with our conventional lumped circuit model, we add additional components so the readings we see in the real world are representative. 
+To represent these *parasitic* properties with our conventional lumped circuit model, we add additional lumped components so the readings we see in the real world are representative of our simulations. 
 
 The following schematics are of a realistic resistor, capacitor, and inductor represented with *lumped* circuit elements: 
 
 - **Schematic of a Realistic Resistor**
-![Schematic of a Realistic Resistor](pics/realistic_resistor.png)
+<p align = "center">
+<img src = "pics/realistic_resistor.png" width="600">
+</p>
+<p align = "center">
+Fig.1 - Schematic of a Realistic Resistor with Lumped Circuit Elements
+</p>
 
 - **Schematic of a Realistic Capacitor**
-![Schematic of a Realistic Capacitor](pics/realistic_capacitor.png)
+<p align = "center">
+<img src = "pics/realistic_capacitor.png" width="600">
+</p>
+<p align = "center">
+Fig.2 - Schematic of a Realistic Capacitor with Lumped Circuit Elements
+</p>
 
 - **Schematic of a Realistic Inductor**
-![Scheamtic of a Realistic Inductor](pics/realistic_inductor.png)
+<p align = "center">
+<img src = "pics/realistic_inductor.png" width="600">
+</p>
+<p align = "center">
+Fig.3 - Schematic of a Realistic Inductor with Lumped Circuit Elements
+</p>
 
 ## **Experimental Setup**
 ---
-To verify any measurements we take on the VNA of these components, we will first simulate the capacitor and inductor with parasitic values before we take measurements of these components on a VNA. Within LTSpice, the parasitic values are entered in the advanced settings for each of the components.
+To study the parasitic properties of these passive components we use a tool called a VNA (Vector Network Analyzer) to examine components in a physical setup.
 
-### **LTSpice Inductor Circuit**
+At its core, a VNA allows us to measure reflectance and transmission of signals sent through a network. It does so by providing a stimulus to the network and subsequently measuring the response. The NanoVNAs we are using for this lab measures the amplitude and phase response of the system under known frequency sweeps which allow us to fully understand and characterize the Device Under Test (DUT).
 
-![LTSpice Inductor](pics/ltspice_parasitic_capacitor.png)
+Due to the exact nature of the measurements we are trying to take, we must ensure that we are only measuring the response of the DUT. Therefore, we do a calibration of the entire test setup when using a VNA in any unknown configuration. This calibration is called a SOLT (Short, Open, Load, and Through) calibration. Figures 4-5 show the measurements from the VNA in the calibration configurations once the calibration has been competed. We can see in Figure 4 that a short is represented by a point at the left of the graph, in Figure 4 that an open circuit is represented by a point at the right of the graph, and in Figure 5 that a 50 Ohm load is represented by a point at the center of the graph.
 
-### **LTSpice Capacitor Circuit**
+<p float="left">
+    <img src="pics/13_short.png" style="width:49%" />
+    <img src="pics/14_open.png" style="width:49%" />
+    <figcaption align="center"><b>Fig.4 - VNA Diagram of a Short on the left and an Open circuit on the right.</b></figcaption>
+</p>
 
-![LTSpice Capacitor](pics/ltspice_parasitic_inductor.png)
+<p float="left">
+    <img src="pics/15_load.png" style="width:49%" />
+    <img src="pics/16_thru.png" style="width:49%" />
+    <figcaption align="center"><b>Fig.5 - VNA Diagram of a Load on the left and a Through on the right.</b></figcaption>
+</p>
 
-### **Physical Experiment Setup**
-For the physical experimental setup, a NanoVNA was used to measure the impedences on the RF board as well as of through hole components. Additionally, to ensure accurate readings, a SOLT calibration was conducted each time a cable was changed and each time the frequency range changed. This setup allowed us to measure the s-parameters of various components and get a better idea of how the VNA is a useful tool. 
+## **Getting to Know the VNA**
+---
+Before we made any measurements to characterize the parasitic properties of any mystery elements, we began by using an RF demo board to understand how to use the VNA. The RF demo board used for this lab is shown in Figure 6. 
 
-![RF Demo Board](pics/rf_demo_board.jpeg)
+<p align = "center">
+<img src = "pics/rf_demo_board.jpg
+" width="400">
+</p>
+<p align = "center">
+Fig.6 - RF Demo Board
+</p>
+
+As stated in the above section, any time the test setup changes, the VNA has to be recalibrated with a SOLT calibration. We utilized the short, open, load, and thru ports at numbers 12-16 on the RF board to calibrate the VNA for measurements with the miniature RF connectors. Once that was done, we were able to verify what we saw on the VNA with the pictures on the RF board. Figure 7. shows an example output from the capacitor on the RF board (labeled 7 in Figure 6). 
+
+<p align = "center">
+<img src = "pics/7_cap.png
+" width="600">
+</p>
+<p align = "center">
+Fig.6 - RF Board Capicator Measurement through the VNA
+</p>
+
+It is very evident that the output on the VNA matched the expected output on the RF board. If we look closely, we see that the graph creeps into the inductive region of the VNA graph indicating some parasitic properties. 
 
 ## **Measurements and Results**
 ---
-Below are the measurements and results for the lab.
+Once we were comfortable using the VNA to take measurements of components, we created mounts with copper clad and edge launch SMA connectors so we could take readings of through-hole inductors and capacitors.
 
-### **LT Spice Results**
-___
-The LTSpice simulation results for the parasitic inductor and capacitor are below: 
+To start, we simulated a Inductor and Capcitor with parasitic values in LTSpice. The goal in doing this was to set expectations for the results we would see when making measurements physically with the VNA and copper clad setup. 
 
-#### **LTSpice Inductor**
-![LT Spice Inductor](pics/ltspice_parasitic_inductor_v_i_graph.png)
 
-#### **LTSpice Capacitor**
-![LT Spice Capacitor](pics/ltspice_parasitic_capacitor_v_i_graph.png)
+<p float="left">
+    <img src="pics/ltspice_parasitic_capacitor.png" style="width:49%" />
+    <img src="pics/ltspice_parasitic_inductor.png" style="width:49%" />
+    <figcaption align="center"><b>Fig.7 - LT Spice Simulation Setup. Capacitor with parasitic values on the left. Inductor with parasitic values on the right.</b></figcaption>
+</p>
+
+Below are the results from the LT Spice Simulation compared to the physical measurement from the VNA for the inductor and capacitor. 
+
+### Inductor
+
+<p align="center">
+    <img src="pics/ltspice_parasitic_inductor_v_i_graph.png" style="width:41%" />
+    <img src="pics/inductor_analyzed_in_series_with_a_resistor_maybe.png" style="width:49%" />
+    <figcaption align="center"><b>Fig.8 - VNA measurements compared to LT Spice simulation for the Inductor.</b></figcaption>
+</p>
+
+### Capacitor
+
+<p align="center">
+    <img src="pics/ltspice_parasitic_capacitor_v_i_graph.png" style="width:41%" />
+    <img src="pics/Mica_cap_analyzed_through_VNA.png" style="width:49%" />
+    <figcaption align="center"><b>Fig.9 - VNA measurements compared to LT Spice simulation for the Capacitor.</b></figcaption>
+</p>
 
 For the capacitor, we see a notch frequency at around 20MHz and for the inductor, we see a notch frequency at around 500MHz.
-
-### **Copper Clad Setup Results**
-___
-
-#### **Mica Capacitor on Copper Clad Results**
-![Mica Capacitor](pics/Mica_cap_analyzed_through_VNA.png)
-
-#### **Inductor on Copper Clad Results**
-![Inductor Copper Clad](pics/inductor_analyzed_in_series_with_a_resistor_maybe.png)
-
-### **RF Demo Board Results**
-___
-#### **SOLT Calibration**
-___
-The below shows the results from the SOLT calibration. As expected after calibration, a short appears as a dot on the left side of the VNA graph, an open circuit appears as a dot on the right side of the VNA graph, and the load and through appear at the center of the VNA graph. 
-
-- **S**hort
-![1_LPF_30MHz](pics/13_short.png)
-
-- **O**pen
-![1_LPF_30MHz](pics/14_open.png)
-
-- **L**oad
-![1_LPF_30MHz](pics/15_load.png)
-
-- **T**hru
-![1_LPF_30MHz](pics/16_thru.png)
-
-#### **Devices Simulated in LTSpice**
-___
-Below are the s-parameters for the capacitor and inductor which were simulated in LTSpice
-- Capacitor
-![1_LPF_30MHz](pics/7_cap.png)
-
-- Inductor
-![1_LPF_30MHz](pics/8_inductor.png)
-
-#### **Remaining RF Demo Board Circuits:**
-___
-The remaining circuits on the RF demo board are analyzed throught the VNA. As seen below, the VNA graphs are the very similar to the RF board. 
-- LPF 30MHz
-![1_LPF_30MHz](pics/1_LPF_30MHz.png)
-
-- HPF 100MHz
-![2_LPF_30MHz](pics/2_HPF_100MHz.png)
-
-- BPF 433MHz
-![1_LPF_30MHz](pics/3_BPF_433MHz.png)
-
-- BSF 6.5MHz
-![1_LPF_30MHz](pics/4_BSF_6_5_MHz.png)
-
-- 33 $\Omega$ SWR = 1.5
-![1_LPF_30MHz](pics/5_33_ohm_swr.png)
-
-- 75 $\Omega$ SWR = 1.5
-![1_LPF_30MHz](pics/6_75_ohm_swr.png)
-
-- Capacitor in Parallel with a device
-![1_LPF_30MHz](pics/9_cap_device.png)
-
-- Capacitor in series with an inductor
-![1_LPF_30MHz](pics/10_cap_inductor.png)
-
-- Capacitor in series with a device and inductor in parallel
-![1_LPF_30MHz](pics/11_cap_parallel_inductor_resistor.png)
-
-- Device in paralle with an indictor and capacitor in series
-![1_LPF_30MHz](pics/12_parallel_series_cap_inductor_device.png)
-
-- -5dB Attenuator
-![1_LPF_30MHz](pics/17_att_neg_5.png)
-
-- -10dB Attenuator
-![1_LPF_30MHz](pics/18_att_neg_10.png)
-
 
 
 ## Discussion
 ---
 From the above VNA graphs it is very evident that passive components have parasitic properities that can be seen in their S-parameters.
 
-Looking at the inductor and capacitor SMD and copper clad setup VNA graphs, we can see that the lines drawn by the VNA go beyond the real plane into the capacitive and inductive regions respectively. This indiciates the presence of parasitic properties. 
+Looking at the inductor and capacitor SMA and copper clad setup VNA graphs, we can see that the lines drawn by the VNA go beyond the real plane into the capacitive and inductive regions respectively. This indiciates the presence of parasitic properties. 
 
-Additionally, when capturing the s-parameters of the mica capicator in the copper clad setup, we see a resonant frequency of about 60MHz while in the LTSpice simulation of the same setup, we see a resonant frequency of 20MHz. This is indicative of parasitic properities that need to be characterized on a per device basis. 
+Additionally, when capturing the s-parameters of the mica capicator in the copper clad setup, we see a resonant frequency of about 60MHz while in the LTSpice simulation of the same setup, we see a resonant frequency of 20MHz. This is indicative of parasitic properities that if measured with the proper tools, can be fed into simulations to improve our models of physical systems. 
 
 ## Summary/Conclusions
 ---
-In conclusion, we have learned to use VNAs effectively to measure the s-parameters of various components. By going through this process, we have learned how to calibrate the VNAs using the SOLT method, how to display data from the VNA both on a laptop and on the VNA itself, and have been able to understand the parasitic properties of passive components. It is painfully obvious from this analysis that passive components have parasitic properties that cannot be ignored. We can simulate this fairly accurately using lumped circuit models, however, we still need to analyze physical components to understand their exact properties as depending on the experimental setup, the properties will vary. 
+In conclusion, we have learned to use a new tool (VNA) to effectively to measure the measure the response of a DUT under known stimuli. Through this lab, we have learned how to calibrate the VNAs using the SOLT method and how to display data from the VNA both on a laptop and on the VNA itself. The measurements from the VNA have enabled us to understand that passive components definitievly have parasitic properties. We have looked at simulations of passive components and have learned how to use the VNA to take measurements which improve our models of those components.

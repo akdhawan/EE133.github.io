@@ -66,7 +66,7 @@ Due to the exact nature of the measurements we are trying to take, we must ensur
 Before we made any measurements to characterize the parasitic properties of any mystery elements, we began by using an RF demo board to understand how to use the VNA. The RF demo board used for this lab is shown in Figure 6. 
 
 <p align = "center">
-<img src = "pics/rf_demo_board.jpg
+<img src = "pics/rf_demo_board.JPG
 " width="400">
 </p>
 <p align = "center">

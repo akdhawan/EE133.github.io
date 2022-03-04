@@ -6,7 +6,7 @@
 
 ## **Abstract**
 ---
-The purpose of a mixer is to take two input signals at different frequences and produce new signals at the sum and difference of those input frequencies.There are many types of mixers including Diode-ring mixers, FET-ring mixers, and Gilbert cells. In this lab, we construct a mixer with a FET-ring and then analyze the mixer with performance metrics. 
+The purpose of a mixer is to take two input signals at different frequences and produce new signals at the sum and difference of those input frequencies. There are many types of mixers including Diode-ring mixers, FET-ring mixers, and Gilbert cells. In this lab, we construct a mixer with a FET-ring and then analyze the mixer with performance metrics. 
 
 ## **Background**
 ---
@@ -47,8 +47,7 @@ To build a FET ring mixer, we use:
 - 3 ADT4-1WT+ RF Transformers
 - Copper Tape
 
-Since this was the first time we were building a board using copper clad and copper tape, we drew out the connections we would make on the board. This diagram can be seen in Fig 4. 
-
+Since this was the first time we were building a board using copper clad and copper tape, we drew out the connections we would make on the board. This diagram can be seen in figure 4. 
 <p align = "center">
 <img src = "pics/mixer_diagram.jpeg" width="600">
 </p>
@@ -65,11 +64,11 @@ Fig. 4 - Diagram of FET ring mixer
 Fig. 5 - Physical construction of the FET ring mixer. 
 </p>
 
-In figure 5, we can see the constructed FET ring mixer for this lab. The left port is the LO port, the right is the RF port, and the center is the IF port. For the experimental setup, the IF port was connected to the Spectrum Analyzer while the RF and LO ports were connected to the Frequency Generator.
+In figure 5, we can see the constructed FET ring mixer for this lab. The left port is the LO port, the right is the RF port, and the center is the IF port. For the experimental setup, the IF port was connected to the spectrum analyzer while the RF and LO ports were connected to the frequency generator.
 
 ## **Measurements and Results**
 ___
-Following the experimental setup, we see the following output from the IF port of the mixer on the spectrum analyzer.The RF frequency is at 8 MHz and the LO frequency is at 10 MHz. In figure 6, we see the sum and difference of these frequencies. We see a peak at 2 MHz for the difference and a peak of 18 Mhz for the sum. In addition to the sum and difference product, we see a fair amount of LO leakage at 10 MHz and some other supurious products.
+Following the experimental setup, we see the following output from the IF port of the mixer on the spectrum analyzer. The RF frequency is at 8 MHz and the LO frequency is at 10 MHz. In figure 6, we see the sum and difference of these frequencies. We see a peak at 2 MHz for the difference and a peak of 18 Mhz for the sum. In addition to the sum and difference product, we see a fair amount of LO leakage at 10 MHz and some other supurious products.
 
 <p align = "center">
 <img src = "pics/Spectrum_output.jpg" width="600">
@@ -81,25 +80,25 @@ Fig. 6 - IF port output on the spectrum analyzer for an RF frequency of 8 MHz an
 We can find the minimum IF frequency by varying the RF and LO frequencies and finding the point where the IF output is no longer a sine wave. We note that since the Spectrum analyzer cannot measure below 100kHz, we must use the oscilloscope to visually find this frequency. We start by setting the RF to 13 MHz and the LO to 12 MHz and then slowly decreasing the RF input till the IF output is no longer a sine wave. The minimum IF frequency calculated in this lab is at 30 kHz with an RF frequency at 12.03MHz and an LO frequency of 12 MHz. We can see these outputs on the frequency generator in figure 8 and the detoriated sine wave in figure 9. 
 
 <p float="left">
-    <img src="pics/lo_frequency.jpeg" style="width:49%" />
-    <img src="pics/rf_frequency.jpeg" style="width:49%" />
+    <img src="pics/lo_frequency.jpg" style="width:49%" />
+    <img src="pics/rf_frequency.jpg" style="width:49%" />
     <figcaption align="center"><b>Fig. 8 - Frequency generator output at minimum IF frequency. LO frequency on left and RF frequency on right</b></figcaption>
 </p>
 
 <p align = "center">
-<img src = "pics/deteriorated_output.jpeg" width="600">
+<img src = "pics/deteriorated_output.jpg" width="600">
 </p>
 <p align = "center">
 Fig. 9 - Deteriorated IF output sine wave
 </p>
 
-We can also use the spectrum analyzer and frequency generator to determine the 1dB compression point by comparing the RF input power to the RF output power. Ideally, they will have a 1:1 slope up until the 1dB compression point where even with an increase in RF input power, we will not see an increase in IF output power. A graph of this phenomenon can be seein in figure 7. 
+We can also use the spectrum analyzer and frequency generator to determine the 1dB compression point by comparing the RF input power to the RF output power. Ideally, they will have a 1:1 slope up until the 1dB compression point where even with an increase in RF input power, we will not see an increase in IF output power. A graph of this phenomenon can be seen in in figure 10. 
 
 <p align = "center">
 <img src = "pics/1db_compression.png" width="600">
 </p>
 <p align = "center">
-Fig. 7 - Graph of 1dB compression point. 
+Fig. 10 - Graph of 1dB compression point. 
 </p>
 
 To find this in lab, we slowly increase the RF input power on the frequency generator and find the point at which we see no increase in IF output power on the spectrum analyzer. For the FET ring mixer we constructed, the 1dB compression point was around 9dBm. 
@@ -108,12 +107,12 @@ Finally, we can calculate the conversion loss which is our IF output power -  RF
 
 ## **Conclusions**
 ___
-To conclude, in this lab, we have learned about a new component called a mixer which has the ability to mix input frequencies and generate the sum and differences of the input frequencies. We have learned about different architectures for these mixers and learned about the tradeoffs of each type. In this lab we focused on a FET ring mixer, however, I also built a diode ring mixer with RF transformers that could perform at much lower frequencies for AM modulation (Figure 8).
+To conclude, in this lab, we have learned about a new component called a mixer which has the ability to mix input frequencies and generate the sum and differences of the input frequencies. We have learned about different architectures for these mixers and learned about the tradeoffs of each type. In this lab we focused on a FET ring mixer, however, I also built a diode ring mixer with RF transformers that could perform at much lower frequencies for AM modulation (Figure 11).
 
 <p float="left">
     <img src="pics/diode_ring_physical.jpg" style="width:49%" />
     <img src="pics/AM_modulation_diode.jpg" style="width:49%" />
-    <figcaption align="center"><b>Fig. 8 - Diode-ring mixer on left with its AM modulation output on the right. 
+    <figcaption align="center"><b>Fig. 11 - Diode-ring mixer on left with its AM modulation output on the right. 
 </b></figcaption>
 </p>
 
